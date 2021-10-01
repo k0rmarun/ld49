@@ -3,8 +3,8 @@ using UnityEngine;
 public class DecayManager : MonoBehaviour
 {
     public const int MAX_WORLD_SIZE_X = 100;
-    public const int MAX_WORLD_SIZE_Y = 100;
-    public const int MAX_WORLD_SIZE_Z = 10;
+    public const int MAX_WORLD_SIZE_Y = 10;
+    public const int MAX_WORLD_SIZE_Z = 100;
 
     public static float[,,] remainingBlockLive;
 
