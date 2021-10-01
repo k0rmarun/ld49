@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DecayManager : MonoBehaviour
@@ -17,15 +15,19 @@ public class DecayManager : MonoBehaviour
 
         for (int x = 0; x < MAX_WORLD_SIZE_X; x++)
         {
-            for (int y = 0; y < MAX_WORLD_SIZE_Z; y++)
+            for (int y = 0; y < MAX_WORLD_SIZE_Y; y++)
             {
-                for (int z = 0; y < MAX_WORLD_SIZE_Z; y++)
+                for (int z = 0; z < MAX_WORLD_SIZE_Z; z++)
                 {
                     GameObject ground = GameObject.Find("G-" + x + "-" + y + "-" + z);
 
                     if (ground)
                     {
-                        remainingBlockLive[x, y, z] = ground.GetComponent<DecayInitializer>().decayTime;
+                        var decayInitializer = ground.GetComponent<DecayInitializer>();
+                        if (decayInitializer)
+                        {
+                            remainingBlockLive[x, y, z] = decayInitializer.decayTime;
+                        }
                     }
                 }
             }
@@ -37,9 +39,9 @@ public class DecayManager : MonoBehaviour
     {
         for (int x = 0; x < MAX_WORLD_SIZE_X; x++)
         {
-            for (int y = 0; y < MAX_WORLD_SIZE_Z; y++)
+            for (int y = 0; y < MAX_WORLD_SIZE_Y; y++)
             {
-                for (int z = 0; y < MAX_WORLD_SIZE_Z; y++)
+                for (int z = 0; z < MAX_WORLD_SIZE_Z; z++)
                 {
                     remainingBlockLive[x, y, z] -= Time.deltaTime;
 
