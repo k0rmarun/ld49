@@ -14,10 +14,6 @@ public class Pickupable : MonoBehaviour
         newObject.transform.localRotation = Quaternion.identity;
         Destroy(gameObject);
         return newObject.GetComponent<Pickupable>();
-        // Destroy(gameObject);
-        // transform.SetParent(hidden.transform, false);
-        // transform.localPosition = Vector3.up;
-        // transform.localRotation = Quaternion.identity;
     }
 
     public GameObject OnPlace(Vector3 buildPosition)
