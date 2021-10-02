@@ -80,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (moveAttempt)
         {
-            transform.rotation = Quaternion.AngleAxis(rotation, Vector3.up);
+            transform.GetChild(0).rotation = Quaternion.AngleAxis(rotation, Vector3.up);
             if (DecayManager.canWalkOn(walkOnPosition))
             {
                 transform.position = walkOnPosition + Vector3.up;
