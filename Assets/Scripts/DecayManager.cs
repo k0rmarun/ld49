@@ -7,6 +7,7 @@ public class DecayManager : MonoBehaviour
     public const int MAX_WORLD_SIZE_Z = 100;
 
     public static bool[,,] hasDecayableBlock = new bool[MAX_WORLD_SIZE_X, MAX_WORLD_SIZE_Y, MAX_WORLD_SIZE_Z];
+    public static bool[,,] buildBlocker = new bool[MAX_WORLD_SIZE_X, MAX_WORLD_SIZE_Y, MAX_WORLD_SIZE_Z];
     public static float[,,] remainingBlockLive = new float[MAX_WORLD_SIZE_X, MAX_WORLD_SIZE_Y, MAX_WORLD_SIZE_Z];
 
     // Start is called before the first frame update
@@ -17,9 +18,15 @@ public class DecayManager : MonoBehaviour
         {
             addDecayableBlock(decayInitializer.gameObject);
         }
+
+        foreach (var buildingBlocker in ground.GetComponentsInChildren<BuildingBlocker>())
+        {
+            addBuildBlocker(buildingBlocker.gameObject);
+        }
     }
 
     // Update is called once per frame
+
     void Update()
     {
         for (int x = 0; x < MAX_WORLD_SIZE_X; x++)
@@ -85,6 +92,23 @@ public class DecayManager : MonoBehaviour
         }
     }
 
+    private void addBuildBlocker(GameObject gameObject)
+    {
+        if (gameObject)
+        {
+            int x = (int) gameObject.transform.position.x;
+            int y = (int) gameObject.transform.position.y;
+            int z = (int) gameObject.transform.position.z;
+
+            if (x < 0 || y < 0 || z < 0 || x > MAX_WORLD_SIZE_X || y > MAX_WORLD_SIZE_Y || z > MAX_WORLD_SIZE_Z)
+            {
+                return;
+            }
+
+            buildBlocker[x, y, z] = true;
+        }
+    }
+
     public static void removeDecayableBlock(int x, int y, int z)
     {
         hasDecayableBlock[x, y, z] = false;
@@ -110,7 +134,7 @@ public class DecayManager : MonoBehaviour
             return false;
         }
 
-        return hasDecayableBlock[x, y, z] && remainingBlockLive[x, y, z] > 0;
+        return hasDecayableBlock[x, y, z] && remainingBlockLive[x, y, z] > 0 && !buildBlocker[x, y, z];
     }
 
     public static bool canPlace(Vector3 position)
@@ -124,7 +148,7 @@ public class DecayManager : MonoBehaviour
             return false;
         }
 
-        return !hasDecayableBlock[x, y, z];
+        return !hasDecayableBlock[x, y, z] && !buildBlocker[x, y, z];
     }
 
     public static bool canDrop(Vector3 position)
@@ -138,7 +162,8 @@ public class DecayManager : MonoBehaviour
             return false;
         }
 
-        return hasDecayableBlock[x, y - 1, z] && !hasDecayableBlock[x, y, z];
+        return hasDecayableBlock[x, y - 1, z] && !hasDecayableBlock[x, y, z] && !buildBlocker[x, y, z] &&
+               !buildBlocker[x, y - 1, z];
     }
 
     public static Pickupable getPickupable(Vector3 position)
