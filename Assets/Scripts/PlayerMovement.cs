@@ -7,28 +7,31 @@ public class PlayerMovement : MonoBehaviour
     public Pickupable inventory;
     public GameObject buildIndicator;
 
+    public float movementLock = 0;
+
     void Update()
     {
+        movementLock -= Time.deltaTime;
         bool moveAttempt = false;
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A) || (Input.GetKey(KeyCode.A) && movementLock < 0))
         {
             rotation = -90;
             lookDirection = Vector3.left;
             moveAttempt = true;
         }
-        else if (Input.GetKeyDown(KeyCode.W))
+        else if (Input.GetKeyDown(KeyCode.W) || (Input.GetKey(KeyCode.W) && movementLock < 0))
         {
             rotation = 0;
             lookDirection = Vector3.forward;
             moveAttempt = true;
         }
-        else if (Input.GetKeyDown(KeyCode.D))
+        else if (Input.GetKeyDown(KeyCode.D) || (Input.GetKey(KeyCode.D) && movementLock < 0))
         {
             rotation = 90;
             lookDirection = Vector3.right;
             moveAttempt = true;
         }
-        else if (Input.GetKeyDown(KeyCode.S))
+        else if (Input.GetKeyDown(KeyCode.S) || (Input.GetKey(KeyCode.S) && movementLock < 0))
         {
             rotation = 180;
             lookDirection = Vector3.back;
@@ -49,6 +52,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 transform.position = walkOnPosition + Vector3.up;
             }
+
+            movementLock = 0.3f;
         }
 
         var walkOverDecay = DecayManager.getWalkOverDecay(standOnPosition);
