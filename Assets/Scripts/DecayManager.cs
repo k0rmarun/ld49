@@ -102,7 +102,7 @@ public class DecayManager : MonoBehaviour
     public static bool canWalkOn(Vector3 position)
     {
         int x = (int) position.x;
-        int y = (int) position.y - 1;
+        int y = (int) position.y;
         int z = (int) position.z;
 
         if (x < 0 || y < 0 || z < 0 || x >= MAX_WORLD_SIZE_X || y >= MAX_WORLD_SIZE_Y || z >= MAX_WORLD_SIZE_Z)
@@ -147,12 +147,42 @@ public class DecayManager : MonoBehaviour
         int y = (int) position.y;
         int z = (int) position.z;
 
-        Debug.Log("+++" + position);
-        Debug.Log("---" + "G-" + x + "-" + y + "-" + z);
         GameObject ground = GameObject.Find("G-" + x + "-" + y + "-" + z);
         if (ground)
         {
             return ground.GetComponent<Pickupable>();
+        }
+
+        return null;
+    }
+
+    public static void adjustDecay(Vector3 position, float remainingLifeTime)
+    {
+        int x = (int) position.x;
+        int y = (int) position.y;
+        int z = (int) position.z;
+
+        if (x < 0 || y < 0 || z < 0 || x >= MAX_WORLD_SIZE_X || y >= MAX_WORLD_SIZE_Y || z >= MAX_WORLD_SIZE_Z)
+        {
+            return;
+        }
+
+        if (hasDecayableBlock[x, y, z])
+        {
+            remainingBlockLive[x, y, z] = Mathf.Min(remainingBlockLive[x, y, z], remainingLifeTime);
+        }
+    }
+
+    public static WalkOverDecay getWalkOverDecay(Vector3 position)
+    {
+        int x = (int) position.x;
+        int y = (int) position.y;
+        int z = (int) position.z;
+
+        GameObject ground = GameObject.Find("G-" + x + "-" + y + "-" + z);
+        if (ground)
+        {
+            return ground.GetComponent<WalkOverDecay>();
         }
 
         return null;

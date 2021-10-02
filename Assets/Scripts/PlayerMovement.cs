@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -76,20 +75,28 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        Vector3 standOnPosition = transform.position + Vector3.down;
+        Vector3 walkOnPosition = standOnPosition + lookDirection;
+
         if (moveAttempt)
         {
-            Vector3 nextPosition = transform.position + lookDirection;
             transform.rotation = Quaternion.AngleAxis(rotation, Vector3.up);
-            if (DecayManager.canWalkOn(nextPosition))
+            if (DecayManager.canWalkOn(walkOnPosition))
             {
-                transform.position = nextPosition;
+                transform.position = walkOnPosition + Vector3.up;
             }
         }
 
-        if (!DecayManager.canWalkOn(transform.position))
+        var walkOverDecay = DecayManager.getWalkOverDecay(standOnPosition);
+        if (walkOverDecay)
+        {
+            DecayManager.adjustDecay(standOnPosition, walkOverDecay.remainingLifeTime);
+        }
+
+        if (!DecayManager.canWalkOn(standOnPosition))
         {
             //GameOver
-            transform.position += Vector3.down;
+            transform.position += 0.3f * Vector3.down;
         }
     }
 }
