@@ -198,12 +198,13 @@ public class DecayManager : MonoBehaviour
         int y = (int) position.y;
         int z = (int) position.z;
 
-        if (x < 0 || y < 0 || z < 0 || x >= MAX_WORLD_SIZE_X || y >= MAX_WORLD_SIZE_Y || z >= MAX_WORLD_SIZE_Z)
+        if (x < 0 || y < 0 || z < 0 || x >= MAX_WORLD_SIZE_X || y + 1 >= MAX_WORLD_SIZE_Y || z >= MAX_WORLD_SIZE_Z)
         {
             return false;
         }
 
-        return hasDecayableBlock[x, y, z] && remainingBlockLive[x, y, z] > 0 && !buildBlocker[x, y, z];
+        return hasDecayableBlock[x, y, z] && remainingBlockLive[x, y, z] > 0 && !buildBlocker[x, y, z] &&
+               !hasPickupable(x, y + 1, z);
     }
 
     public static bool canPlace(Vector3 position)
@@ -241,6 +242,11 @@ public class DecayManager : MonoBehaviour
         int y = (int) position.y;
         int z = (int) position.z;
 
+        if (x < 0 || y < 0 || z < 0 || x >= MAX_WORLD_SIZE_X || y >= MAX_WORLD_SIZE_Y || z >= MAX_WORLD_SIZE_Z)
+        {
+            return null;
+        }
+        
         GameObject ground = objects[x, y, z];
         if (ground)
         {
@@ -248,6 +254,17 @@ public class DecayManager : MonoBehaviour
         }
 
         return null;
+    }
+
+    public static bool hasPickupable(int x, int y, int z)
+    {
+        GameObject ground = objects[x, y, z];
+        if (ground)
+        {
+            return ground.GetComponent<Pickupable>();
+        }
+
+        return false;
     }
 
     public static void adjustDecay(Vector3 position, float remainingLifeTime)
