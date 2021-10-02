@@ -91,6 +91,14 @@ public class DecayManager : MonoBehaviour
         remainingBlockLive[x, y, z] = 0;
     }
 
+    public static void removeDecayableBlock(Vector3 position)
+    {
+        int x = (int) position.x;
+        int y = (int) position.y;
+        int z = (int) position.z;
+        removeDecayableBlock(x, y, z);
+    }
+
     public static bool canWalkOn(Vector3 position)
     {
         int x = (int) position.x;

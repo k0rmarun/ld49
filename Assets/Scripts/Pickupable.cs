@@ -9,6 +9,8 @@ public class Pickupable : MonoBehaviour
     {
         var hidden = GameObject.Find("Inventory");
         transform.SetParent(hidden.transform, false);
+        transform.localPosition = Vector3.up;
+        transform.localRotation = Quaternion.identity;
     }
 
     public GameObject OnPlace(Vector3 buildPosition)

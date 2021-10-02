@@ -69,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
                     if (!inventory)
                     {
                         inventory = pickupable;
+                        DecayManager.removeDecayableBlock(interactPosition);
                         pickupable.OnPickup();
                     }
                 }
