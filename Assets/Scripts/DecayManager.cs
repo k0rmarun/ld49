@@ -82,6 +82,23 @@ public class DecayManager : MonoBehaviour
         remainingBlockLive[x, y, z] = remainingLife;
     }
 
+    public static void addDecayableBlock(GameObject gameObject)
+    {
+        if (gameObject)
+        {
+            int x = (int) gameObject.transform.position.x;
+            int y = (int) gameObject.transform.position.y;
+            int z = (int) gameObject.transform.position.z;
+
+            var decayInitializer = gameObject.GetComponent<DecayInitializer>();
+            if (decayInitializer)
+            {
+                hasDecayableBlock[x, y, z] = true;
+                remainingBlockLive[x, y, z] = decayInitializer.decayTime;
+            }
+        }
+    }
+
     public static void removeDecayableBlock(int x, int y, int z)
     {
         hasDecayableBlock[x, y, z] = false;
@@ -100,5 +117,19 @@ public class DecayManager : MonoBehaviour
         }
 
         return hasDecayableBlock[x, y, z] && remainingBlockLive[x, y, z] > 0;
+    }
+
+    public static bool canPlace(Vector3 position)
+    {
+        int x = (int) position.x;
+        int y = (int) position.y;
+        int z = (int) position.z;
+
+        if (x < 0 || y < 0 || z < 0 || x >= MAX_WORLD_SIZE_X || y >= MAX_WORLD_SIZE_Y || z >= MAX_WORLD_SIZE_Z)
+        {
+            return false;
+        }
+
+        return !hasDecayableBlock[x, y, z];
     }
 }
