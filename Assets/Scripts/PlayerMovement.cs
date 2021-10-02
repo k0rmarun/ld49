@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public int prevRotation = 0;
     public int rotation = 0;
     public Vector3 lookDirection = Vector3.zero;
     public Pickupable inventory;
@@ -48,12 +49,16 @@ public class PlayerMovement : MonoBehaviour
         if (moveAttempt)
         {
             transform.GetChild(0).rotation = Quaternion.AngleAxis(rotation, Vector3.up);
-            if (DecayManager.canWalkOn(walkOnPosition))
+            if (rotation == prevRotation)
             {
-                transform.position = walkOnPosition + Vector3.up;
+                if (DecayManager.canWalkOn(walkOnPosition))
+                {
+                    transform.position = walkOnPosition + Vector3.up;
+                }
             }
 
             movementLock = 0.3f;
+            prevRotation = rotation;
         }
 
         var walkOverDecay = DecayManager.getWalkOverDecay(standOnPosition);
@@ -106,9 +111,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    inventory = pickupable;
                     DecayManager.removeDecayableBlock(interactPosition);
-                    pickupable.OnPickup();
+                    inventory = pickupable.OnPickup();
                 }
             }
         }

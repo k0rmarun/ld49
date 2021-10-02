@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5e3be07493d3624aac818565a8f08ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickedPrefab: {fileID: 961049086060526421}
   placedPrefab: {fileID: 9183531389296244883, guid: e199e895597a481d9b9aa47cafca44bb, type: 3}
   droppedPrefab: {fileID: 961049086060526421}
 --- !u!114 &1872310645084874189
