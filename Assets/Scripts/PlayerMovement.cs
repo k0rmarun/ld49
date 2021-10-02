@@ -13,25 +13,25 @@ public class PlayerMovement : MonoBehaviour
         bool moveAttempt = false;
         if (Input.GetKeyDown(KeyCode.A))
         {
-            rotation = 90;
+            rotation = -90;
             lookDirection = Vector3.left;
             moveAttempt = true;
         }
         else if (Input.GetKeyDown(KeyCode.W))
         {
-            rotation = 180;
+            rotation = 0;
             lookDirection = Vector3.forward;
             moveAttempt = true;
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
-            rotation = -90;
+            rotation = 90;
             lookDirection = Vector3.right;
             moveAttempt = true;
         }
         else if (Input.GetKeyDown(KeyCode.S))
         {
-            rotation = 0;
+            rotation = 180;
             lookDirection = Vector3.back;
             moveAttempt = true;
         }
@@ -79,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
         if (moveAttempt)
         {
             Vector3 nextPosition = transform.position + lookDirection;
-            transform.rotation = Quaternion.AngleAxis(90 * rotation, Vector3.up);
+            transform.rotation = Quaternion.AngleAxis(rotation, Vector3.up);
             if (DecayManager.canWalkOn(nextPosition))
             {
                 transform.position = nextPosition;
