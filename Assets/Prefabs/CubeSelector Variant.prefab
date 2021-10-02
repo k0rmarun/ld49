@@ -82,6 +82,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 0e73fe3956864e44fbe69acedfaa3f46, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7f4cfc325a3d51aeebdb31886a781a80, type: 2}
     - target: {fileID: 919132149155446097, guid: 0e73fe3956864e44fbe69acedfaa3f46, type: 3}
       propertyPath: m_Name
       value: CubeSelector Variant

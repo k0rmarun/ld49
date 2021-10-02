@@ -86,7 +86,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 126d0901d385dacec8df1bbe521f974e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  decayTime: 10000
+  decayTime: Infinity
 --- !u!1 &7085752244729595962
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,8 @@ public class DecayManager : MonoBehaviour
     public static bool[,,] hasDecayableBlock = new bool[MAX_WORLD_SIZE_X, MAX_WORLD_SIZE_Y, MAX_WORLD_SIZE_Z];
     public static bool[,,] buildBlocker = new bool[MAX_WORLD_SIZE_X, MAX_WORLD_SIZE_Y, MAX_WORLD_SIZE_Z];
     public static float[,,] remainingBlockLive = new float[MAX_WORLD_SIZE_X, MAX_WORLD_SIZE_Y, MAX_WORLD_SIZE_Z];
+    public static GameObject[,,] objects = new GameObject[MAX_WORLD_SIZE_X, MAX_WORLD_SIZE_Y, MAX_WORLD_SIZE_Z];
+    public static bool[,,] falling = new bool[MAX_WORLD_SIZE_X, MAX_WORLD_SIZE_Y, MAX_WORLD_SIZE_Z];
 
     // Start is called before the first frame update
     void Start()
@@ -41,24 +43,24 @@ public class DecayManager : MonoBehaviour
                     }
 
                     remainingBlockLive[x, y, z] -= Time.deltaTime;
-                    if (y != 0)
+                    if (canDecay(x, y, z))
                     {
-                        remainingBlockLive[x, y, z] =
-                            Mathf.Min(remainingBlockLive[x, y - 1, z], remainingBlockLive[x, y, z]);
+                        if (hasDecayableBlock[x, y, z] &&
+                            ((y == 0 && falling[x, y, z]) || (y > 0 && !hasDecayableBlock[x, y - 1, z])))
+                        {
+                            GameObject ground = objects[x, y, z];
+                            if (ground)
+                            {
+                                Debug.Log("Oh Noes");
+                                DropBlock(ground, x, y, z);
+                            }
+                        }
                     }
 
                     if (remainingBlockLive[x, y, z] > 0 && remainingBlockLive[x, y, z] < 5)
                     {
-                        GameObject ground = GameObject.Find("G-" + x + "-" + y + "-" + z);
-                        if (ground)
-                        {
-                            var decayAnimation = ground.GetComponent<DecayAnimation>();
-                            if (!decayAnimation)
-                            {
-                                decayAnimation = ground.AddComponent<DecayAnimation>();
-                                decayAnimation.timeAlive = remainingBlockLive[x, y, z];
-                            }
-                        }
+                        GameObject ground = objects[x, y, z];
+                        AddDecayAnimation(ground, remainingBlockLive[x, y, z]);
                     }
 
                     if (remainingBlockLive[x, y, z] < 0)
@@ -67,6 +69,70 @@ public class DecayManager : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    private static void AddDecayAnimation(GameObject ground, float initialRemainingLive)
+    {
+        if (ground)
+        {
+            var decayAnimation = ground.GetComponent<DecayAnimation>();
+            if (!decayAnimation)
+            {
+                decayAnimation = ground.AddComponent<DecayAnimation>();
+                decayAnimation.timeAlive = initialRemainingLive;
+            }
+        }
+    }
+
+    private bool canDecay(int x, int y, int z)
+    {
+        return remainingBlockLive[x, y, z] < 100_000;
+    }
+
+    private static void DropBlock(GameObject ground, int x, int y, int z)
+    {
+        ground.transform.position += Vector3.down * 0.1f;
+        int newY = (int) ground.transform.position.y;
+        if (newY != y)
+        {
+            if (y != 0)
+            {
+                falling[x, y - 1, z] = true;
+            }
+            else
+            {
+                AddDecayAnimation(ground, 0);
+            }
+
+            falling[x, y, z] = false;
+            if (y != 0)
+            {
+                hasDecayableBlock[x, y - 1, z] = true;
+            }
+
+            hasDecayableBlock[x, y, z] = false;
+
+            if (y != 0)
+            {
+                remainingBlockLive[x, y - 1, z] = remainingBlockLive[x, y, z];
+            }
+
+            remainingBlockLive[x, y, z] = 0;
+
+            if (y != 0)
+            {
+                buildBlocker[x, y - 1, z] = buildBlocker[x, y, z];
+            }
+
+            buildBlocker[x, y, z] = false;
+
+            if (y != 0)
+            {
+                objects[x, y - 1, z] = objects[x, y, z];
+            }
+
+            objects[x, y, z] = null;
         }
     }
 
@@ -88,6 +154,7 @@ public class DecayManager : MonoBehaviour
             {
                 hasDecayableBlock[x, y, z] = true;
                 remainingBlockLive[x, y, z] = decayInitializer.decayTime;
+                objects[x, y, z] = gameObject;
             }
         }
     }
@@ -106,6 +173,7 @@ public class DecayManager : MonoBehaviour
             }
 
             buildBlocker[x, y, z] = true;
+            objects[x, y, z] = gameObject;
         }
     }
 
@@ -113,6 +181,7 @@ public class DecayManager : MonoBehaviour
     {
         hasDecayableBlock[x, y, z] = false;
         remainingBlockLive[x, y, z] = 0;
+        objects[x, y, z] = null;
     }
 
     public static void removeDecayableBlock(Vector3 position)
@@ -172,7 +241,7 @@ public class DecayManager : MonoBehaviour
         int y = (int) position.y;
         int z = (int) position.z;
 
-        GameObject ground = GameObject.Find("G-" + x + "-" + y + "-" + z);
+        GameObject ground = objects[x, y, z];
         if (ground)
         {
             return ground.GetComponent<Pickupable>();
@@ -204,7 +273,12 @@ public class DecayManager : MonoBehaviour
         int y = (int) position.y;
         int z = (int) position.z;
 
-        GameObject ground = GameObject.Find("G-" + x + "-" + y + "-" + z);
+        if (x < 0 || y < 0 || z < 0 || x >= MAX_WORLD_SIZE_X || y >= MAX_WORLD_SIZE_Y || z >= MAX_WORLD_SIZE_Z)
+        {
+            return null;
+        }
+
+        GameObject ground = objects[x, y, z];
         if (ground)
         {
             return ground.GetComponent<WalkOverDecay>();
