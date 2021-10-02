@@ -71,7 +71,10 @@ public class DecayManager : MonoBehaviour
             int y = (int) gameObject.transform.position.y;
             int z = (int) gameObject.transform.position.z;
 
-            Debug.Log(gameObject.name + ": " + x + " " + y + " " + z);
+            if (x < 0 || y < 0 || z < 0 || x > MAX_WORLD_SIZE_X || y > MAX_WORLD_SIZE_Y || z > MAX_WORLD_SIZE_Z)
+            {
+                return;
+            }
 
             var decayInitializer = gameObject.GetComponent<DecayInitializer>();
             if (decayInitializer)
@@ -114,5 +117,36 @@ public class DecayManager : MonoBehaviour
         }
 
         return !hasDecayableBlock[x, y, z];
+    }
+
+    public static bool canDrop(Vector3 position)
+    {
+        int x = (int) position.x;
+        int y = (int) position.y;
+        int z = (int) position.z;
+
+        if (x < 0 || y < 1 || z < 0 || x >= MAX_WORLD_SIZE_X || y >= MAX_WORLD_SIZE_Y || z >= MAX_WORLD_SIZE_Z)
+        {
+            return false;
+        }
+
+        return hasDecayableBlock[x, y - 1, z] && !hasDecayableBlock[x, y, z];
+    }
+
+    public static Pickupable getPickupable(Vector3 position)
+    {
+        int x = (int) position.x;
+        int y = (int) position.y;
+        int z = (int) position.z;
+
+        Debug.Log("+++" + position);
+        Debug.Log("---" + "G-" + x + "-" + y + "-" + z);
+        GameObject ground = GameObject.Find("G-" + x + "-" + y + "-" + z);
+        if (ground)
+        {
+            return ground.GetComponent<Pickupable>();
+        }
+
+        return null;
     }
 }
