@@ -176,7 +176,15 @@ public class DecayManager : MonoBehaviour
             objects[x, y, z] = gameObject;
         }
     }
-
+    
+    public static void removeDecayableBlock(Vector3 position)
+    {
+        int x = (int) position.x;
+        int y = (int) position.y;
+        int z = (int) position.z;
+        removeDecayableBlock(x, y, z);
+    }
+    
     public static void removeDecayableBlock(int x, int y, int z)
     {
         hasDecayableBlock[x, y, z] = false;
@@ -184,12 +192,32 @@ public class DecayManager : MonoBehaviour
         objects[x, y, z] = null;
     }
 
-    public static void removeDecayableBlock(Vector3 position)
+    public static void removeDecayableBlocks(Vector3 position, int distance)
     {
         int x = (int) position.x;
         int y = (int) position.y;
         int z = (int) position.z;
-        removeDecayableBlock(x, y, z);
+        removeDecayableBlocks(x, y, z, distance);
+    }
+
+    public static void removeDecayableBlocks(int x, int y, int z, int distance)
+    {
+        if (distance == 0)
+        {
+            removeDecayableBlock(x, y, z);
+            return;
+        }
+
+        for (int lX = x - distance; lX <= x + distance; lX++)
+        {
+            for (int lY = y - distance; lY <= y + distance; lY++)
+            {
+                for (int lZ = z - distance; lZ <= z + distance; lZ++)
+                {
+                    removeDecayableBlock(lX, lY, lZ);
+                }
+            }
+        }
     }
 
     public static bool canWalkOn(Vector3 position)
