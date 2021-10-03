@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -1625810132510232525}
   - component: {fileID: 5905597365536480047}
   m_Layer: 0
-  m_Name: WallSnow
+  m_Name: WallStoneSnow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -140,7 +140,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 5786c4457407a2140abf49c37501ce83, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 9d367d67c628a844da82a9d342b08004, type: 2}
+      objectReference: {fileID: 2100000, guid: 44a9da45f27e7dd40a8dced2691ed863, type: 2}
     - target: {fileID: 919132149155446097, guid: 5786c4457407a2140abf49c37501ce83, type: 3}
       propertyPath: m_Name
       value: CubeFull

@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a80b05d2e89efe848a3a3d0b7715ee4f, type: 2}
+  - {fileID: 2100000, guid: 500346f6cf4bf6f40956e6456e602c26, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: -2401061499886325553}
   - component: {fileID: 3699733197084161898}
   m_Layer: 0
-  m_Name: WallStone
+  m_Name: WallCleanStone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
