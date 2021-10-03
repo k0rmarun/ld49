@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 3231314227323629372}
   - component: {fileID: 1633224782244979125}
   - component: {fileID: 4382148767130470572}
+  - component: {fileID: 7850258785376812848}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -79,10 +80,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4757fbc960006e27b41e3e49412a8ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prevRotation: 0
   rotation: 0
   lookDirection: {x: 0, y: 0, z: 0}
   inventory: {fileID: 0}
   buildIndicator: {fileID: 0}
+  movementLock: 0
 --- !u!54 &1633224782244979125
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -113,6 +116,20 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.5, y: 1, z: 0.5}
+--- !u!114 &7850258785376812848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4336299545317896980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 702e5b791e3752f0cba463206a4439d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextLevel: 
+  isFinal: 0
 --- !u!1001 &7790723381183595174
 PrefabInstance:
   m_ObjectHideFlags: 0

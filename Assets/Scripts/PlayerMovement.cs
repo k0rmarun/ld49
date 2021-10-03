@@ -69,8 +69,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (!DecayManager.canWalkOn(standOnPosition))
         {
-            //GameOver
             transform.position += 0.3f * Vector3.down;
+            if (transform.position.y < -20)
+            {
+                GameObject.FindWithTag("Player").GetComponent<GameOverHandler>().OnDeath();
+            }
         }
     }
 
