@@ -106,11 +106,10 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            SetCursorColor(Color.magenta);
+            SetCursorColor(Color.white);
             Pickupable pickupable = DecayManager.getPickupable(interactPosition);
             if (pickupable)
             {
-                SetCursorColor(Color.cyan);
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     inventory = pickupable.OnPickup(interactPosition);
