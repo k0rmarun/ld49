@@ -349,6 +349,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: MarkerIcons_10
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 418
+        width: 76
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f14c20f88f342640bf3ca55f88a5cd2
+      internalID: -1349978887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MarkerIcons_11
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 418
+        width: 77
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c630fee159c97d45803f6ce6e60a650
+      internalID: 1474450875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -360,6 +402,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      MarkerIcons_11: 1474450875
+      MarkerIcons_10: -1349978887
       MarkerIcons_2: -150623874
       MarkerIcons_9: 1377296282
       MarkerIcons_8: -1081113678
