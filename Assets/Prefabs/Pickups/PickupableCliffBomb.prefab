@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 3317708284730748788}
   - component: {fileID: 2662387024672676768}
   - component: {fileID: 7222564592887919430}
+  - component: {fileID: -2096967143138924284}
   m_Layer: 0
   m_Name: PickupableCliffBomb
   m_TagString: Untagged
@@ -120,6 +121,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 068479b92ddeea6a596469e087bf8312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-2096967143138924284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7238883958476459351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49c9785764e948478bc7a94e81a56e9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tags: 03000000
 --- !u!1001 &5590665916871304100
 PrefabInstance:
   m_ObjectHideFlags: 0

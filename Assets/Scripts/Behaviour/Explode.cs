@@ -1,4 +1,5 @@
 using System;
+using DefaultNamespace;
 using UnityEngine;
 
 namespace Behaviour
@@ -23,8 +24,15 @@ namespace Behaviour
 
             if (delayTimer > delay)
             {
-                DecayManager.DecayBlocks(location, ExplosionRange, 0.4f);
-                Destroy(this);
+                DecayManager.DecayBlocks(location, ExplosionRange, 0.4f, o
+                    =>
+                {
+                    var info = BlockInfo.GetInfo(o);
+                    return info && info.tags.Contains(BlockType.Wall);
+                });
+                
+                DecayManager.removeDecayableBlock(gameObject);
+                Destroy(gameObject);
             }
         }
     }

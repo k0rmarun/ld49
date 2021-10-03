@@ -184,7 +184,11 @@ public class DecayManager : MonoBehaviour
             objects[x, y, z] = gameObject;
         }
     }
-
+    public static void removeDecayableBlock(GameObject gameObject)
+    {
+        removeDecayableBlock(gameObject.transform.position);
+    }
+    
     public static void removeDecayableBlock(Vector3 position)
     {
         int x = (int) position.x;
@@ -200,33 +204,38 @@ public class DecayManager : MonoBehaviour
         objects[x, y, z] = null;
     }
 
-    public static void DecayBlocks(Vector3 position, int distance, float baseDecayLeft)
+    public static void DecayBlocks(Vector3 position, int distance, float baseDecayLeft, Func<GameObject, bool> filter)
     {
         int x = (int) position.x;
         int y = (int) position.y;
         int z = (int) position.z;
-        DecayBlocks(x, y, z, distance, baseDecayLeft);
+        DecayBlocks(x, y, z, distance, baseDecayLeft, filter);
     }
 
-    public static void DecayBlocks(int x, int y, int z, int distance, float baseDecayLeft)
+    public static void DecayBlocks(int x, int y, int z, int distance, float baseDecayLeft, Func<GameObject, bool> filter)
     {
-        if (distance == 0)
-        {
-            remainingBlockLive[x, y, z] = baseDecayLeft;
-            return;
-        }
-
         Vector2 planeOrigin = new Vector2(x, z);
         Vector2 planeLoc = new Vector2();
+        
         for (int lX = x - distance; lX <= x + distance; lX++)
         {
             for (int lY = y - distance; lY <= y + distance; lY++)
             {
                 for (int lZ = z - distance; lZ <= z + distance; lZ++)
                 {
-                    planeLoc.Set(lX, lZ);
-                    remainingBlockLive[Math.Max(lX, 0), Math.Max(lY, 0), Math.Max(lZ, 0)]
-                        = baseDecayLeft * Mathf.Max(Vector2.Distance(planeLoc, planeOrigin) / 2, 1f);
+                    if (lX is < 0 or >= MAX_WORLD_SIZE_X
+                        || lY is < 0 or >= MAX_WORLD_SIZE_Y
+                        || lZ is < 0 or >= MAX_WORLD_SIZE_Z)
+                    {
+                        continue;
+                    }
+
+                    var currentObj = objects[lX, lY, lZ];
+                    if (currentObj && filter(currentObj)) {
+                        planeLoc.Set(lX, lZ);
+                        remainingBlockLive[lX,lY,lZ] 
+                            = baseDecayLeft * Mathf.Max(Vector2.Distance(planeLoc, planeOrigin) / 2, 1f);
+                    }
                 }
             }
         }

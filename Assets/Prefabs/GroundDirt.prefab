@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4013291732383420885}
   - component: {fileID: 8058982741892831426}
   - component: {fileID: 6525489876803938181}
+  - component: {fileID: 8894393945714617288}
   m_Layer: 0
   m_Name: GroundDirt
   m_TagString: Untagged
@@ -72,6 +73,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   decayTime: Infinity
+--- !u!114 &8894393945714617288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5862604368406331618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49c9785764e948478bc7a94e81a56e9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tags: 01000000
 --- !u!1001 &7108383027658312104
 PrefabInstance:
   m_ObjectHideFlags: 0

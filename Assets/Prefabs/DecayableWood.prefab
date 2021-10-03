@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6529633304587220583}
   - component: {fileID: 4099846901324077974}
   - component: {fileID: 7386193081707593982}
+  - component: {fileID: 7005149983627682681}
   m_Layer: 0
   m_Name: DecayableWood
   m_TagString: Untagged
@@ -86,6 +87,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   remainingLifeTime: 5
+--- !u!114 &7005149983627682681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9183531389296244883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49c9785764e948478bc7a94e81a56e9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tags: 01000000
 --- !u!1001 &1054204267933225055
 PrefabInstance:
   m_ObjectHideFlags: 0

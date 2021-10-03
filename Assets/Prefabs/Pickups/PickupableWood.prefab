@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1872310645084874189}
   - component: {fileID: 6877053093851062283}
   - component: {fileID: 538264940955510664}
+  - component: {fileID: -5254367922857869816}
   m_Layer: 0
   m_Name: PickupableWood
   m_TagString: Untagged
@@ -88,6 +89,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   decayTime: Infinity
+--- !u!114 &-5254367922857869816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 961049086060526421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49c9785764e948478bc7a94e81a56e9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tags: 0300000005000000
 --- !u!1 &7085752244729595962
 GameObject:
   m_ObjectHideFlags: 0

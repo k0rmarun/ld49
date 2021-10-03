@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6645388934834597263}
   - component: {fileID: 7453792341222599649}
   - component: {fileID: 6177575068028110679}
+  - component: {fileID: 4374470362581477524}
   m_Layer: 0
   m_Name: DecayableStone
   m_TagString: Untagged
@@ -72,6 +73,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   decayTime: 20
+--- !u!114 &4374470362581477524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1494944785637850409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49c9785764e948478bc7a94e81a56e9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tags: 01000000
 --- !u!1001 &4333700944451851894
 PrefabInstance:
   m_ObjectHideFlags: 0
