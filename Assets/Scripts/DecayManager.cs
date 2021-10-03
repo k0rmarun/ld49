@@ -4,7 +4,7 @@ using UnityEngine;
 public class DecayManager : MonoBehaviour
 {
     public const int MAX_WORLD_SIZE_X = 100;
-    public const int MAX_WORLD_SIZE_Y = 10;
+    public const int MAX_WORLD_SIZE_Y = 20;
     public const int MAX_WORLD_SIZE_Z = 100;
 
     public static bool[,,] hasDecayableBlock = new bool[MAX_WORLD_SIZE_X, MAX_WORLD_SIZE_Y, MAX_WORLD_SIZE_Z];
@@ -38,14 +38,6 @@ public class DecayManager : MonoBehaviour
             {
                 for (int z = 0; z < MAX_WORLD_SIZE_Z; z++)
                 {
-                    if (x == 14 && z == 9)
-                    {
-                        Color color = new Color(hasDecayableBlock[x, y, z] ? 1 : 0,
-                            canWalkOn(new Vector3(x, y, z)) ? 1 : 0,
-                            remainingBlockLive[x, y, z] > 0 ? 1 : 0);
-                        Debug.DrawLine(new Vector3(100, 100, 100), new Vector3(x, y, z), color);
-                    }
-
                     if (!hasDecayableBlock[x, y, z])
                     {
                         continue;
