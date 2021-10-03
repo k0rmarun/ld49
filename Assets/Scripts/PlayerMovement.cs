@@ -70,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
         if (!DecayManager.canWalkOn(standOnPosition))
         {
             transform.position += 0.3f * Vector3.down;
-            if (transform.position.y < -10)
+            if (transform.position.y < -20)
             {
                 GameObject.FindWithTag("Player").GetComponent<GameOverHandler>().OnDeath();
             }
@@ -106,10 +106,11 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            SetCursorColor(Color.white);
+            SetCursorColor(Color.magenta);
             Pickupable pickupable = DecayManager.getPickupable(interactPosition);
             if (pickupable)
             {
+                SetCursorColor(Color.cyan);
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     inventory = pickupable.OnPickup(interactPosition);
