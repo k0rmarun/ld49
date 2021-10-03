@@ -104,7 +104,7 @@ public class DecayManager : MonoBehaviour
         var newPosition = ground.transform.position + Vector3.down * 0.1f;
         int newY = (int) newPosition.y;
 
-        if (newY != y && hasDecayableBlock[x, newY, z])
+        if (newY != y && newY > 0 && hasDecayableBlock[x, newY, z])
         {
             return;
         }
