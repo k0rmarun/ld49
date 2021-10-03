@@ -5,5 +5,5 @@ using UnityEngine;
 public class HintIconData
 {
     public Sprite sprite;
-    public float duration;
+    public float duration = 0.5f;
 }
