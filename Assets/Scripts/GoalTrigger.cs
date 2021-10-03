@@ -6,7 +6,7 @@ public class GoalTrigger : MonoBehaviour
     {
         if (other.name == "Player")
         {
-            //TODO: Win the game!
+            GameObject.FindWithTag("Player").GetComponent<GameOverHandler>().OnVictory();
         }
     }
 }
