@@ -38,6 +38,14 @@ public class DecayManager : MonoBehaviour
             {
                 for (int z = 0; z < MAX_WORLD_SIZE_Z; z++)
                 {
+                    if (x == 14 && z == 9)
+                    {
+                        Color color = new Color(hasDecayableBlock[x, y, z] ? 1 : 0,
+                            canWalkOn(new Vector3(x, y, z)) ? 1 : 0,
+                            remainingBlockLive[x, y, z] > 0 ? 1 : 0);
+                        Debug.DrawLine(new Vector3(100, 100, 100), new Vector3(x, y, z), color);
+                    }
+
                     if (!hasDecayableBlock[x, y, z])
                     {
                         continue;
@@ -176,7 +184,7 @@ public class DecayManager : MonoBehaviour
             objects[x, y, z] = gameObject;
         }
     }
-    
+
     public static void removeDecayableBlock(Vector3 position)
     {
         int x = (int) position.x;
@@ -184,7 +192,7 @@ public class DecayManager : MonoBehaviour
         int z = (int) position.z;
         removeDecayableBlock(x, y, z);
     }
-    
+
     public static void removeDecayableBlock(int x, int y, int z)
     {
         hasDecayableBlock[x, y, z] = false;
@@ -207,7 +215,7 @@ public class DecayManager : MonoBehaviour
             remainingBlockLive[x, y, z] = baseDecayLeft;
             return;
         }
-        
+
         Vector2 planeOrigin = new Vector2(x, z);
         Vector2 planeLoc = new Vector2();
         for (int lX = x - distance; lX <= x + distance; lX++)
@@ -216,8 +224,8 @@ public class DecayManager : MonoBehaviour
             {
                 for (int lZ = z - distance; lZ <= z + distance; lZ++)
                 {
-                    planeLoc.Set(lX,lZ);
-                    remainingBlockLive[Math.Max(lX, 0), Math.Max(lY, 0), Math.Max(lZ, 0)] 
+                    planeLoc.Set(lX, lZ);
+                    remainingBlockLive[Math.Max(lX, 0), Math.Max(lY, 0), Math.Max(lZ, 0)]
                         = baseDecayLeft * Mathf.Max(Vector2.Distance(planeLoc, planeOrigin) / 2, 1f);
                 }
             }
@@ -236,7 +244,7 @@ public class DecayManager : MonoBehaviour
         }
 
         return hasDecayableBlock[x, y, z] && remainingBlockLive[x, y, z] > 0 && !buildBlocker[x, y, z] &&
-               !hasPickupable(x, y + 1, z);
+               !hasPickupable(x, y + 1, z) && !hasDecayableBlock[x, y + 1, z];
     }
 
     public static bool canPlace(Vector3 position)
@@ -278,7 +286,7 @@ public class DecayManager : MonoBehaviour
         {
             return null;
         }
-        
+
         GameObject ground = objects[x, y, z];
         if (ground)
         {
