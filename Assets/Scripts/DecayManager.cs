@@ -14,7 +14,6 @@ public class DecayManager : MonoBehaviour
     public static bool[,,] falling = new bool[MAX_WORLD_SIZE_X, MAX_WORLD_SIZE_Y, MAX_WORLD_SIZE_Z];
 
     
-    // Start is called before the first frame update
     void Start()
     {
         for (int x = 0; x < MAX_WORLD_SIZE_X; x++)
@@ -44,24 +43,22 @@ public class DecayManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-
     void Update()
     {
-        GameObject player = GameObject.FindWithTag("Player");
+        // GameObject player = GameObject.FindWithTag("Player");
         for (int x = 0; x < MAX_WORLD_SIZE_X; x++)
         {
             for (int y = 0; y < MAX_WORLD_SIZE_Y; y++)
             {
                 for (int z = 0; z < MAX_WORLD_SIZE_Z; z++)
                 {
-                    if ((new Vector3(x, y, z) - player.transform.position).magnitude < 5)
-                    {
-                        Color color = new Color(hasDecayableBlock[x, y, z] ? 1 : 0,
-                            canWalkOn(new Vector3(x, y, z)) ? 1 : 0,
-                            remainingBlockLive[x, y, z] > 0 ? 1 : 0);
-                        Debug.DrawLine(player.transform.position + Vector3.up, new Vector3(x, y, z), color);
-                    }
+                    // if ((new Vector3(x, y, z) - player.transform.position).magnitude < 5)
+                    // {
+                        // Color color = new Color(hasDecayableBlock[x, y, z] ? 1 : 0,
+                            // canWalkOn(new Vector3(x, y, z)) ? 1 : 0,
+                            // remainingBlockLive[x, y, z] > 0 ? 1 : 0);
+                        // Debug.DrawLine(player.transform.position + Vector3.up, new Vector3(x, y, z), color);
+                    // }
 
                     if (!hasDecayableBlock[x, y, z])
                     {

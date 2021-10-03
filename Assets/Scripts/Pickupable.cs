@@ -7,8 +7,14 @@ public class Pickupable : MonoBehaviour
     public GameObject placedPrefab;
     public GameObject droppedPrefab;
 
+    public Color dropColor = Color.white;
+
     public Pickupable OnPickup(Vector3 pickupPosition)
     {
+        if (pickedPrefab == null)
+        {
+            return null;
+        }
         DecayManager.removeDecayableBlock(pickupPosition);
         var hidden = GameObject.Find("Inventory");
         GameObject newObject = Instantiate(pickedPrefab, hidden.transform);
@@ -25,6 +31,10 @@ public class Pickupable : MonoBehaviour
 
     public void OnPlace(Vector3 placePosition)
     {
+        if (placedPrefab == null)
+        {
+            return;
+        }
         GameObject newObject = Instantiate(placedPrefab, placePosition, Quaternion.identity);
         
         foreach (var action in GetComponents<IPlaceAction>())
@@ -36,6 +46,10 @@ public class Pickupable : MonoBehaviour
 
     public void OnDrop(Vector3 dropPosition)
     {
+        if (droppedPrefab == null)
+        {
+            return;
+        }
         GameObject newObject = Instantiate(droppedPrefab, dropPosition, Quaternion.identity);
         
         foreach (var action in GetComponents<IDropAction>())
@@ -43,5 +57,15 @@ public class Pickupable : MonoBehaviour
         
         Destroy(gameObject);
         DecayManager.addDecayableBlock(newObject);
+    }
+
+    public bool canPlace()
+    {
+        return placedPrefab != null;
+    }
+
+    public bool canDrop()
+    {
+        return droppedPrefab != null;
     }
 }
