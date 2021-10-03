@@ -276,18 +276,15 @@ public class DecayManager : MonoBehaviour
 
         if (x < 0 || y < 0 || z < 0 || x >= MAX_WORLD_SIZE_X || y >= MAX_WORLD_SIZE_Y || z >= MAX_WORLD_SIZE_Z)
         {
-            Debug.Log("++++++");
             return null;
         }
         
         GameObject ground = objects[x, y, z];
         if (ground)
         {
-            Debug.Log("--------");
             return ground.GetComponent<Pickupable>();
         }
 
-        Debug.Log("########");
         return null;
     }
 

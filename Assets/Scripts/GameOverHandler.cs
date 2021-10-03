@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class GameOverHandler : MonoBehaviour
 {
+    public static string lastLevel;
     public string nextLevel;
     public bool isFinal = false;
 
@@ -14,12 +15,13 @@ public class GameOverHandler : MonoBehaviour
 
     public void OnVictory()
     {
-        if (isFinal)
+        if (isFinal || nextLevel == "")
         {
             OnFinalVictory();
         }
         else
         {
+            lastLevel = nextLevel;
             LoadScene(nextLevel);
         }
     }
@@ -27,6 +29,11 @@ public class GameOverHandler : MonoBehaviour
     public static void OnFinalVictory()
     {
         LoadScene("WinScene");
+    }
+
+    public void RetryLastLevel()
+    {
+        LoadScene(lastLevel);
     }
 
     public static void LoadScene(string name)
