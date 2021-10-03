@@ -14,10 +14,11 @@ public class Pickupable : MonoBehaviour
         GameObject newObject = Instantiate(pickedPrefab, hidden.transform);
         newObject.transform.localPosition = Vector3.up;
         newObject.transform.localRotation = Quaternion.identity;
-        Destroy(gameObject);
         
         foreach (var action in GetComponents<IPickupAction>())
             action.Pickup(pickupPosition);
+        
+        Destroy(gameObject);
         
         return newObject.GetComponent<Pickupable>();
     }
@@ -25,20 +26,22 @@ public class Pickupable : MonoBehaviour
     public void OnPlace(Vector3 placePosition)
     {
         GameObject newObject = Instantiate(placedPrefab, placePosition, Quaternion.identity);
-        Destroy(gameObject);
-        DecayManager.addDecayableBlock(newObject);
         
         foreach (var action in GetComponents<IPlaceAction>())
             action.Place(placePosition);
+        
+        Destroy(gameObject);
+        DecayManager.addDecayableBlock(newObject);
     }
 
     public void OnDrop(Vector3 dropPosition)
     {
         GameObject newObject = Instantiate(droppedPrefab, dropPosition, Quaternion.identity);
-        Destroy(gameObject);
-        DecayManager.addDecayableBlock(newObject);
         
         foreach (var action in GetComponents<IDropAction>())
             action.Drop(dropPosition);
+        
+        Destroy(gameObject);
+        DecayManager.addDecayableBlock(newObject);
     }
 }
