@@ -90,8 +90,7 @@ public class PlayerMovement : MonoBehaviour
                 SetCursorColor(Color.green);
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    GameObject gameObject = inventory.OnPlace(buildPosition);
-                    DecayManager.addDecayableBlock(gameObject);
+                    inventory.OnPlace(buildPosition);
                     inventory = null;
                 }
             }
@@ -100,8 +99,7 @@ public class PlayerMovement : MonoBehaviour
                 SetCursorColor(Color.white);
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    GameObject gameObject = inventory.OnDrop(interactPosition);
-                    DecayManager.addDecayableBlock(gameObject);
+                    inventory.OnDrop(interactPosition);
                     inventory = null;
                 }
             }
@@ -114,8 +112,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    DecayManager.removeDecayableBlock(interactPosition);
-                    inventory = pickupable.OnPickup();
+                    inventory = pickupable.OnPickup(interactPosition);
                 }
             }
         }

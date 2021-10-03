@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class DecayManager : MonoBehaviour
@@ -176,7 +177,15 @@ public class DecayManager : MonoBehaviour
             objects[x, y, z] = gameObject;
         }
     }
-
+    
+    public static void removeDecayableBlock(Vector3 position)
+    {
+        int x = (int) position.x;
+        int y = (int) position.y;
+        int z = (int) position.z;
+        removeDecayableBlock(x, y, z);
+    }
+    
     public static void removeDecayableBlock(int x, int y, int z)
     {
         hasDecayableBlock[x, y, z] = false;
@@ -184,12 +193,32 @@ public class DecayManager : MonoBehaviour
         objects[x, y, z] = null;
     }
 
-    public static void removeDecayableBlock(Vector3 position)
+    public static void DecayBlocks(Vector3 position, int distance)
     {
         int x = (int) position.x;
         int y = (int) position.y;
         int z = (int) position.z;
-        removeDecayableBlock(x, y, z);
+        DecayBlocks(x, y, z, distance);
+    }
+
+    public static void DecayBlocks(int x, int y, int z, int distance)
+    {
+        if (distance == 0)
+        {
+            remainingBlockLive[x, y, z] = 0;
+            return;
+        }
+
+        for (int lX = x - distance; lX <= x + distance; lX++)
+        {
+            for (int lY = y - distance; lY <= y + distance; lY++)
+            {
+                for (int lZ = z - distance; lZ <= z + distance; lZ++)
+                {
+                    remainingBlockLive[Math.Max(lX, 0), Math.Max(lY, 0), Math.Max(lZ, 0)] = 0.2f;
+                }
+            }
+        }
     }
 
     public static bool canWalkOn(Vector3 position)

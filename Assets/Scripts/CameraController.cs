@@ -10,8 +10,9 @@ public class CameraController : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindWithTag("Player");
-        transform.position = player.transform.position + new Vector3(1, 1, -1) * 10;
-        target_Offset = transform.position - player.transform.position;
+        var playerPosition = player.transform.position;
+        transform.position = playerPosition + new Vector3(1, 1, -1) * 10;
+        target_Offset = transform.position - playerPosition;
         transform.LookAt(player.transform);
     }
 
