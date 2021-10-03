@@ -8,7 +8,7 @@ namespace Actions
         
         public void Drop(Vector3 actionLocation)
         {
-            DecayManager.removeDecayableBlocks(actionLocation, 3);
+            DecayManager.DecayBlocks(actionLocation, 3);
         }
     }
 }

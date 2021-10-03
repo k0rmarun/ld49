@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class DecayManager : MonoBehaviour
@@ -192,19 +193,19 @@ public class DecayManager : MonoBehaviour
         objects[x, y, z] = null;
     }
 
-    public static void removeDecayableBlocks(Vector3 position, int distance)
+    public static void DecayBlocks(Vector3 position, int distance)
     {
         int x = (int) position.x;
         int y = (int) position.y;
         int z = (int) position.z;
-        removeDecayableBlocks(x, y, z, distance);
+        DecayBlocks(x, y, z, distance);
     }
 
-    public static void removeDecayableBlocks(int x, int y, int z, int distance)
+    public static void DecayBlocks(int x, int y, int z, int distance)
     {
         if (distance == 0)
         {
-            removeDecayableBlock(x, y, z);
+            remainingBlockLive[x, y, z] = 0;
             return;
         }
 
@@ -214,7 +215,7 @@ public class DecayManager : MonoBehaviour
             {
                 for (int lZ = z - distance; lZ <= z + distance; lZ++)
                 {
-                    removeDecayableBlock(lX, lY, lZ);
+                    remainingBlockLive[Math.Max(lX, 0), Math.Max(lY, 0), Math.Max(lZ, 0)] = 0.2f;
                 }
             }
         }
