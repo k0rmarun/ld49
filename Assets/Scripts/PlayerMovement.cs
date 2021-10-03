@@ -91,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
         SetCursorColor(Color.red);
         if (inventory)
         {
-            if (DecayManager.canPlace(buildPosition))
+            if (DecayManager.canPlace(buildPosition) && inventory.canPlace())
             {
                 SetCursorColor(Color.green);
                 if (Input.GetButtonDown("Fire1"))
@@ -100,9 +100,9 @@ public class PlayerMovement : MonoBehaviour
                     inventory = null;
                 }
             }
-            else if (DecayManager.canDrop(interactPosition))
+            else if (DecayManager.canDrop(interactPosition) && inventory.canDrop())
             {
-                SetCursorColor(Color.white);
+                SetCursorColor(inventory.dropColor);
                 if (Input.GetButtonDown("Fire1"))
                 {
                     inventory.OnDrop(interactPosition);
