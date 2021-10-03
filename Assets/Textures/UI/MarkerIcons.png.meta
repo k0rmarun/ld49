@@ -165,7 +165,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 107
-        y: 509
+        y: 508
         width: 77
         height: 77
       alignment: 0
@@ -286,6 +286,69 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: MarkerIcons_7
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 508
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2290f39d884b3149a1e9365e1ce31a6
+      internalID: -7296932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MarkerIcons_8
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 508
+        width: 78
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72dd39a2694ac444090112b07711b700
+      internalID: -1081113678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MarkerIcons_9
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 418
+        width: 77
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a16d2ad660e0eb840be3aeabef1e71a8
+      internalID: 1377296282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -298,10 +361,13 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       MarkerIcons_2: -150623874
+      MarkerIcons_9: 1377296282
+      MarkerIcons_8: -1081113678
       MarkerIcons_4: 1708348585
       MarkerIcons_5: -1300607388
       MarkerIcons_6: 1004827964
       MarkerIcons_3: -209444043
+      MarkerIcons_7: -7296932
       MarkerIcons_0: 164189731
       MarkerIcons_1: -1236401036
   spritePackingTag: 
