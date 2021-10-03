@@ -14,7 +14,7 @@ public class GameOverHandler : MonoBehaviour
 
     public void OnVictory()
     {
-        if (isFinal)
+        if (isFinal || nextLevel == "")
         {
             OnFinalVictory();
         }
