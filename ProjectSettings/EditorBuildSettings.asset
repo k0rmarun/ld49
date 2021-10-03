@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/KorScene.unity
     guid: 3183b6cae9909976f8a210e5d8e05cf9
+  - enabled: 1
+    path: Assets/Scenes/World1.unity
+    guid: 1018caaf33c216f26bdfc2ccc96eccc5
   m_configObjects: {}

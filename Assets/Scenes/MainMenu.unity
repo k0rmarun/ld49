@@ -1069,7 +1069,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 702e5b791e3752f0cba463206a4439d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextLevel: KorScene
+  nextLevel: World1
   isFinal: 0
 --- !u!114 &795806504
 MonoBehaviour:
