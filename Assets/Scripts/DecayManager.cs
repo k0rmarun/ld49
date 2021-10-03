@@ -204,7 +204,7 @@ public class DecayManager : MonoBehaviour
     {
         if (distance == 0)
         {
-            remainingBlockLive[x, y, z] = 0;
+            remainingBlockLive[x, y, z] = 0.2f;
             return;
         }
 
