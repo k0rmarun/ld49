@@ -14,29 +14,35 @@ public class PlayerMovement : MonoBehaviour
     {
         movementLock -= Time.deltaTime;
         bool moveAttempt = false;
-        if (Input.GetKeyDown(KeyCode.A) || (Input.GetKey(KeyCode.A) && movementLock < 0))
+        if (Input.GetButtonDown("Horizontal") || (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.3 && movementLock < 0))
         {
-            rotation = -90;
-            lookDirection = Vector3.left;
-            moveAttempt = true;
+            if (Input.GetAxis("Horizontal") < 0)
+            {
+                rotation = -90;
+                lookDirection = Vector3.left;
+                moveAttempt = true;
+            }
+            else if (Input.GetAxis("Horizontal") > 0)
+            {
+                rotation = 90;
+                lookDirection = Vector3.right;
+                moveAttempt = true;
+            }
         }
-        else if (Input.GetKeyDown(KeyCode.W) || (Input.GetKey(KeyCode.W) && movementLock < 0))
+        else if (Input.GetButtonDown("Vertical") || (Mathf.Abs(Input.GetAxis("Vertical")) > 0.3 && movementLock < 0))
         {
-            rotation = 0;
-            lookDirection = Vector3.forward;
-            moveAttempt = true;
-        }
-        else if (Input.GetKeyDown(KeyCode.D) || (Input.GetKey(KeyCode.D) && movementLock < 0))
-        {
-            rotation = 90;
-            lookDirection = Vector3.right;
-            moveAttempt = true;
-        }
-        else if (Input.GetKeyDown(KeyCode.S) || (Input.GetKey(KeyCode.S) && movementLock < 0))
-        {
-            rotation = 180;
-            lookDirection = Vector3.back;
-            moveAttempt = true;
+            if (Input.GetAxis("Vertical") > 0)
+            {
+                rotation = 0;
+                lookDirection = Vector3.forward;
+                moveAttempt = true;
+            }
+            else if (Input.GetAxis("Vertical") < 0)
+            {
+                rotation = 180;
+                lookDirection = Vector3.back;
+                moveAttempt = true;
+            }
         }
 
         Vector3 interactPosition = transform.position + lookDirection;
@@ -88,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
             if (DecayManager.canPlace(buildPosition))
             {
                 SetCursorColor(Color.green);
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (Input.GetButtonDown("Fire1"))
                 {
                     inventory.OnPlace(buildPosition);
                     inventory = null;
@@ -97,7 +103,7 @@ public class PlayerMovement : MonoBehaviour
             else if (DecayManager.canDrop(interactPosition))
             {
                 SetCursorColor(Color.white);
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (Input.GetButtonDown("Fire1"))
                 {
                     inventory.OnDrop(interactPosition);
                     inventory = null;
@@ -110,7 +116,7 @@ public class PlayerMovement : MonoBehaviour
             Pickupable pickupable = DecayManager.getPickupable(interactPosition);
             if (pickupable)
             {
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (Input.GetButtonDown("Fire1"))
                 {
                     inventory = pickupable.OnPickup(interactPosition);
                 }

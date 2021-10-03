@@ -47,7 +47,7 @@ public class DecayManager : MonoBehaviour
                     if (canDecay(x, y, z))
                     {
                         if (hasDecayableBlock[x, y, z] &&
-                            ((y == 0 && falling[x, y, z]) || (y > 0 && !hasDecayableBlock[x, y - 1, z])))
+                            ((falling[x, y, z]) || (y > 0 && !hasDecayableBlock[x, y - 1, z])))
                         {
                             GameObject ground = objects[x, y, z];
                             if (ground)
@@ -92,8 +92,16 @@ public class DecayManager : MonoBehaviour
 
     private static void DropBlock(GameObject ground, int x, int y, int z)
     {
-        ground.transform.position += Vector3.down * 0.1f;
-        int newY = (int) ground.transform.position.y;
+        var newPosition = ground.transform.position + Vector3.down * 0.1f;
+        int newY = (int) newPosition.y;
+
+        if (newY != y && hasDecayableBlock[x, newY, z])
+        {
+            return;
+        }
+
+        ground.transform.position = newPosition;
+
         if (newY != y)
         {
             if (y != 0)
@@ -176,11 +184,12 @@ public class DecayManager : MonoBehaviour
             objects[x, y, z] = gameObject;
         }
     }
+
     public static void removeDecayableBlock(GameObject gameObject)
     {
         removeDecayableBlock(gameObject.transform.position);
     }
-    
+
     public static void removeDecayableBlock(Vector3 position)
     {
         int x = (int) position.x;
@@ -204,11 +213,12 @@ public class DecayManager : MonoBehaviour
         DecayBlocks(x, y, z, distance, baseDecayLeft, filter);
     }
 
-    public static void DecayBlocks(int x, int y, int z, int distance, float baseDecayLeft, Func<GameObject, bool> filter)
+    public static void DecayBlocks(int x, int y, int z, int distance, float baseDecayLeft,
+        Func<GameObject, bool> filter)
     {
         Vector2 planeOrigin = new Vector2(x, z);
         Vector2 planeLoc = new Vector2();
-        
+
         for (int lX = x - distance; lX <= x + distance; lX++)
         {
             for (int lY = y - distance; lY <= y + distance; lY++)
@@ -223,9 +233,10 @@ public class DecayManager : MonoBehaviour
                     }
 
                     var currentObj = objects[lX, lY, lZ];
-                    if (currentObj && filter(currentObj)) {
+                    if (currentObj && filter(currentObj))
+                    {
                         planeLoc.Set(lX, lZ);
-                        remainingBlockLive[lX,lY,lZ] 
+                        remainingBlockLive[lX, lY, lZ]
                             = baseDecayLeft * Mathf.Max(Vector2.Distance(planeLoc, planeOrigin) / 2, 1f);
                     }
                 }
