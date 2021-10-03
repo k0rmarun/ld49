@@ -6,6 +6,7 @@ namespace Behaviour
 {
     public class Explode : MonoBehaviour
     {
+        public GameObject explodeEffect;
         public int ExplosionRange = 3;
         public float delay = 3f;
 
@@ -30,7 +31,12 @@ namespace Behaviour
                     var info = BlockInfo.GetInfo(o);
                     return info && info.tags.Contains(BlockType.Wall);
                 });
-                
+
+                if (explodeEffect)
+                {
+                    Instantiate(explodeEffect, location, new Quaternion());
+                }
+
                 DecayManager.removeDecayableBlock(gameObject);
                 Destroy(gameObject);
             }
