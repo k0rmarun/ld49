@@ -165,7 +165,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 107
-        y: 508
+        y: 509
         width: 77
         height: 77
       alignment: 0
@@ -206,10 +206,10 @@ TextureImporter:
       name: MarkerIcons_3
       rect:
         serializedVersion: 2
-        x: 23
-        y: 420
+        x: 284
+        y: 508
         width: 77
-        height: 78
+        height: 77
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -227,9 +227,9 @@ TextureImporter:
       name: MarkerIcons_4
       rect:
         serializedVersion: 2
-        x: 110
-        y: 421
-        width: 77
+        x: 368
+        y: 508
+        width: 78
         height: 77
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -248,8 +248,8 @@ TextureImporter:
       name: MarkerIcons_5
       rect:
         serializedVersion: 2
-        x: 199
-        y: 421
+        x: 451
+        y: 508
         width: 77
         height: 77
       alignment: 0
@@ -269,8 +269,8 @@ TextureImporter:
       name: MarkerIcons_6
       rect:
         serializedVersion: 2
-        x: 285
-        y: 421
+        x: 539
+        y: 508
         width: 77
         height: 77
       alignment: 0
@@ -282,69 +282,6 @@ TextureImporter:
       bones: []
       spriteID: ca0fe5ec8916b6d489f50ecf0ef13066
       internalID: 1004827964
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MarkerIcons_7
-      rect:
-        serializedVersion: 2
-        x: 370
-        y: 421
-        width: 78
-        height: 79
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 920e5a238754b044e85fb4218b57fc65
-      internalID: -859071645
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MarkerIcons_8
-      rect:
-        serializedVersion: 2
-        x: 458
-        y: 420
-        width: 77
-        height: 78
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 11b3f2bcef1c3c0468f5bcc11f757bae
-      internalID: 1097811004
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MarkerIcons_9
-      rect:
-        serializedVersion: 2
-        x: 545
-        y: 420
-        width: 77
-        height: 78
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: baa89ebc439380a4381e18bc6df28c81
-      internalID: 1951897466
       vertices: []
       indices: 
       edges: []
@@ -361,13 +298,10 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       MarkerIcons_2: -150623874
-      MarkerIcons_9: 1951897466
-      MarkerIcons_8: 1097811004
       MarkerIcons_4: 1708348585
       MarkerIcons_5: -1300607388
       MarkerIcons_6: 1004827964
       MarkerIcons_3: -209444043
-      MarkerIcons_7: -859071645
       MarkerIcons_0: 164189731
       MarkerIcons_1: -1236401036
   spritePackingTag: 
