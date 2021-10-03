@@ -16,7 +16,7 @@ public class Pickupable : MonoBehaviour
         newObject.transform.localRotation = Quaternion.identity;
         
         foreach (var action in GetComponents<IPickupAction>())
-            action.Pickup(pickupPosition);
+            action.Pickup(pickupPosition, newObject);
         
         Destroy(gameObject);
         
@@ -28,7 +28,7 @@ public class Pickupable : MonoBehaviour
         GameObject newObject = Instantiate(placedPrefab, placePosition, Quaternion.identity);
         
         foreach (var action in GetComponents<IPlaceAction>())
-            action.Place(placePosition);
+            action.Place(placePosition, newObject);
         
         Destroy(gameObject);
         DecayManager.addDecayableBlock(newObject);
@@ -39,7 +39,7 @@ public class Pickupable : MonoBehaviour
         GameObject newObject = Instantiate(droppedPrefab, dropPosition, Quaternion.identity);
         
         foreach (var action in GetComponents<IDropAction>())
-            action.Drop(dropPosition);
+            action.Drop(dropPosition, newObject);
         
         Destroy(gameObject);
         DecayManager.addDecayableBlock(newObject);

@@ -4,6 +4,6 @@ namespace Actions
 {
     public interface IDropAction
     {
-        public void Drop(Vector3 actionLocation);
+        public void Drop(Vector3 actionLocation, GameObject gObject);
     }
 }

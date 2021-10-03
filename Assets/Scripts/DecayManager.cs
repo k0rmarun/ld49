@@ -192,29 +192,33 @@ public class DecayManager : MonoBehaviour
         objects[x, y, z] = null;
     }
 
-    public static void DecayBlocks(Vector3 position, int distance)
+    public static void DecayBlocks(Vector3 position, int distance, float baseDecayLeft)
     {
         int x = (int) position.x;
         int y = (int) position.y;
         int z = (int) position.z;
-        DecayBlocks(x, y, z, distance);
+        DecayBlocks(x, y, z, distance, baseDecayLeft);
     }
 
-    public static void DecayBlocks(int x, int y, int z, int distance)
+    public static void DecayBlocks(int x, int y, int z, int distance, float baseDecayLeft)
     {
         if (distance == 0)
         {
-            remainingBlockLive[x, y, z] = 0.2f;
+            remainingBlockLive[x, y, z] = baseDecayLeft;
             return;
         }
-
+        
+        Vector2 planeOrigin = new Vector2(x, z);
+        Vector2 planeLoc = new Vector2();
         for (int lX = x - distance; lX <= x + distance; lX++)
         {
             for (int lY = y - distance; lY <= y + distance; lY++)
             {
                 for (int lZ = z - distance; lZ <= z + distance; lZ++)
                 {
-                    remainingBlockLive[Math.Max(lX, 0), Math.Max(lY, 0), Math.Max(lZ, 0)] = 0.2f;
+                    planeLoc.Set(lX,lZ);
+                    remainingBlockLive[Math.Max(lX, 0), Math.Max(lY, 0), Math.Max(lZ, 0)] 
+                        = baseDecayLeft * Mathf.Max(Vector2.Distance(planeLoc, planeOrigin) / 2, 1f);
                 }
             }
         }
