@@ -1,14 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
+[ExecuteInEditMode]
 public class Billboard : MonoBehaviour
 {
     public Camera camera;
-
+    public bool autoDetectCamera = true;
+    
     void Update()
     {
+        if (autoDetectCamera && !camera)
+        {
+            camera = FindObjectOfType<Camera>();
+        }
+
         Vector3 lookAt = transform.position;
         lookAt -= (camera.transform.position - lookAt);
         // Debug.DrawLine(transform.position, lookAt, Color.red);
