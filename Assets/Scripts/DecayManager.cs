@@ -55,7 +55,7 @@ public class DecayManager : MonoBehaviour
                     // if ((new Vector3(x, y, z) - player.transform.position).magnitude < 5)
                     // {
                         // Color color = new Color(hasDecayableBlock[x, y, z] ? 1 : 0,
-                            // canWalkOn(new Vector3(x, y, z)) ? 1 : 0,
+                            // canPlace(new Vector3(x, y, z)) ? 1 : 0,
                             // remainingBlockLive[x, y, z] > 0 ? 1 : 0);
                         // Debug.DrawLine(player.transform.position + Vector3.up, new Vector3(x, y, z), color);
                     // }
@@ -178,13 +178,14 @@ public class DecayManager : MonoBehaviour
             {
                 return;
             }
-
+            
             var decayInitializer = gameObject.GetComponent<DecayInitializer>();
             if (decayInitializer)
             {
                 hasDecayableBlock[x, y, z] = true;
                 remainingBlockLive[x, y, z] = decayInitializer.decayTime;
                 objects[x, y, z] = gameObject;
+                falling[x, y, z] = false;
             }
         }
     }
