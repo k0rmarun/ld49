@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[ExecuteInEditMode]
 public class Hint : MonoBehaviour
 {
     public HintAnimation hintAnimation;
@@ -20,6 +17,14 @@ public class Hint : MonoBehaviour
         if (switcher && hintAnimation != switcher.hintAnimation)
         {
             switcher.hintAnimation = hintAnimation;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag.Equals("Player"))
+        {
+            Destroy(gameObject);
         }
     }
 }
