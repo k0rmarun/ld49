@@ -13,6 +13,16 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetButtonDown("Cancel"))
+        {
+            Camera.main.GetComponent<PauseMenu>().ToggleMenu();
+        }
+
+        if (PauseMenu.isPaused)
+        {
+            return;
+        }
+
         movementLock -= Time.deltaTime;
         Vector3 standOnPosition = Vector3.down;
         if (!isFalling)
@@ -100,8 +110,6 @@ public class PlayerMovement : MonoBehaviour
     private void UpdateCursor(Vector3 buildPosition, Vector3 interactPosition)
     {
         buildIndicator.transform.position = buildPosition + Vector3.up * 0.2f;
-        bool canDoSomething = false;
-
         SetCursorColor(Color.red);
         if (inventory)
         {

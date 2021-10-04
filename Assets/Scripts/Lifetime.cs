@@ -2,22 +2,16 @@ using UnityEngine;
 
 public class Lifetime : MonoBehaviour
 {
-    public float Time = 10F;
+    public float originalTime = 10F;
     private float timer;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
-        if (timer >= Time)
+        if (timer >= originalTime)
         {
             Destroy(gameObject);
         }
 
-        timer += UnityEngine.Time.deltaTime;
+        timer += Time.deltaTime;
     }
 }

@@ -36,6 +36,17 @@ public class GameOverHandler : MonoBehaviour
         LoadScene(lastLevel);
     }
 
+    public void LoadBonusLevel()
+    {
+        lastLevel = "World98";
+        LoadScene("World98");
+    }
+    
+    public static void RetryLastLevelStatic()
+    {
+        LoadScene(lastLevel);
+    }
+
     public static void LoadScene(string name)
     {
         SceneManager.LoadScene(name);
