@@ -35,6 +35,11 @@ public class GameOverHandler : MonoBehaviour
     {
         LoadScene(lastLevel);
     }
+    
+    public static void RetryLastLevelStatic()
+    {
+        LoadScene(lastLevel);
+    }
 
     public static void LoadScene(string name)
     {

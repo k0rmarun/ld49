@@ -13,6 +13,16 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetButtonDown("Cancel"))
+        {
+            Camera.main.GetComponent<PauseMenu>().ToggleMenu();
+        }
+
+        if (PauseMenu.isPaused)
+        {
+            return;
+        }
+
         movementLock -= Time.deltaTime;
         Vector3 standOnPosition = Vector3.down;
         if (!isFalling)
