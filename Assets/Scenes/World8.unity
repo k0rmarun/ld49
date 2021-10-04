@@ -307,13 +307,13 @@ Transform:
   - {fileID: 730132713}
   - {fileID: 1254379397}
   - {fileID: 1713491380}
-  - {fileID: 764076040}
   - {fileID: 105517348}
   - {fileID: 607936596}
   - {fileID: 1908390946}
   - {fileID: 1861792360}
   - {fileID: 1381896535}
   - {fileID: 1437605074}
+  - {fileID: 764076040}
   - {fileID: 159566659}
   - {fileID: 1061190474}
   - {fileID: 2136938208}
@@ -7288,11 +7288,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7850258785376812848, guid: c3d7e252f16a139839daba3d278b6da3, type: 3}
       propertyPath: isFinal
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7850258785376812848, guid: c3d7e252f16a139839daba3d278b6da3, type: 3}
       propertyPath: nextLevel
-      value: 
+      value: WorldTempel1
       objectReference: {fileID: 0}
     - target: {fileID: 9122927318693075330, guid: c3d7e252f16a139839daba3d278b6da3, type: 3}
       propertyPath: m_LocalPosition.x

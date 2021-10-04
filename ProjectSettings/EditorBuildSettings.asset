@@ -39,6 +39,9 @@ EditorBuildSettings:
     path: Assets/Scenes/World8.unity
     guid: acd26aa58562596a7bc9c5b4cf9b1725
   - enabled: 1
+    path: Assets/Scenes/WorldTempel1.unity
+    guid: e1d7c9e94f401724c8b20643252d20fc
+  - enabled: 1
     path: Assets/Scenes/World98.unity
     guid: d714149e68dc254c988d7107ada3a426
   - enabled: 1
