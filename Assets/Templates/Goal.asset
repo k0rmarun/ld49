@@ -17,5 +17,5 @@ MonoBehaviour:
     duration: 0.5
   - sprite: {fileID: 1474450875, guid: 9a6a50235f61112419a4d44589a97bad, type: 3}
     duration: 0.5
-  - sprite: {fileID: 0}
+  - sprite: {fileID: 146529865, guid: a6dc1e6b87d25404ca06bf8b9c13b0b1, type: 3}
     duration: 0.2
