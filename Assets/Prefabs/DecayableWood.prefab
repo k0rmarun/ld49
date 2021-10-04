@@ -87,6 +87,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   remainingLifeTime: 5
+  material: {fileID: 2100000, guid: 21e2a72a39260c443804d3f8efae4eb8, type: 2}
 --- !u!114 &7005149983627682681
 MonoBehaviour:
   m_ObjectHideFlags: 0
