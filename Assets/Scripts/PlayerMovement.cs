@@ -110,8 +110,6 @@ public class PlayerMovement : MonoBehaviour
     private void UpdateCursor(Vector3 buildPosition, Vector3 interactPosition)
     {
         buildIndicator.transform.position = buildPosition + Vector3.up * 0.2f;
-        bool canDoSomething = false;
-
         SetCursorColor(Color.red);
         if (inventory)
         {
