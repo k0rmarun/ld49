@@ -35,12 +35,14 @@ public class PauseMenu : MonoBehaviour
     public void Retry()
     {
         isPaused = false;
+        Time.timeScale = 1;
         GameOverHandler.RetryLastLevelStatic();
     }
 
     public void MainMenu()
     {
         isPaused = false;
+        Time.timeScale = 1;
         GameOverHandler.LoadScene("MainMenu");
     }
 }
