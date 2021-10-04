@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isFalling;
     public float movementLock = 0;
+    private bool frozen;
 
     void Update()
     {
@@ -19,6 +20,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (PauseMenu.isPaused)
+        {
+            return;
+        }
+
+        if (frozen)
         {
             return;
         }
@@ -102,6 +108,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 RandomizedSound.Play(transform, RandomizedSound.DIE);
             }
+
             transform.position += 0.3f * Vector3.down;
             if (transform.position.y < -20)
             {
@@ -157,5 +164,10 @@ public class PlayerMovement : MonoBehaviour
     private void SetCursorColor(Color color)
     {
         buildIndicator.GetComponent<Renderer>().material.color = color;
+    }
+
+    public void freezePlayer()
+    {
+        frozen = true;
     }
 }

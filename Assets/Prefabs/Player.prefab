@@ -77,7 +77,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53f342f5564b7648c95b41f45176df13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: []
+  sounds:
+  - clip: {fileID: 8300000, guid: 7deb566285ce247458799a85188a7e84, type: 3}
+    weight: 1
 --- !u!82 &1197584116758195908
 AudioSource:
   m_ObjectHideFlags: 0
@@ -256,7 +258,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53f342f5564b7648c95b41f45176df13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: []
+  sounds:
+  - clip: {fileID: 8300000, guid: 7a8d413268bf9094ab4664e501206e2a, type: 3}
+    weight: 1
 --- !u!82 &4776300286362161694
 AudioSource:
   m_ObjectHideFlags: 0
@@ -498,15 +502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53f342f5564b7648c95b41f45176df13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds:
-  - clip: {fileID: 8300000, guid: 50d1069943e5c9749a405d15bd1b1193, type: 3}
-    weight: 1
-  - clip: {fileID: 8300000, guid: 37b8f96232c382c4fb5639c363228d39, type: 3}
-    weight: 1
-  - clip: {fileID: 8300000, guid: 1b772daddcbb53e499f252dc7de13275, type: 3}
-    weight: 1
-  - clip: {fileID: 8300000, guid: 786ae3f284ca6014da94e7cc9eac6e07, type: 3}
-    weight: 1
+  sounds: []
 --- !u!82 &2410350253254624956
 AudioSource:
   m_ObjectHideFlags: 0
@@ -776,7 +772,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53f342f5564b7648c95b41f45176df13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: []
+  sounds:
+  - clip: {fileID: 8300000, guid: 49dfc6e2b80d08943a2d82a2eb15e13c, type: 3}
+    weight: 1
+  - clip: {fileID: 8300000, guid: 2d6aa89bcf79dad40b76aadb854ecee4, type: 3}
+    weight: 1
 --- !u!82 &1522062858078924862
 AudioSource:
   m_ObjectHideFlags: 0
@@ -920,6 +920,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - clip: {fileID: 8300000, guid: 16e022b07f0ac504ba53c151b4ee9b0d, type: 3}
+    weight: 1
+  - clip: {fileID: 8300000, guid: df4c7f0c30d5f904e8cc3bd586bc77f5, type: 3}
+    weight: 1
+  - clip: {fileID: 8300000, guid: eaa092278efb22646b71dd2ae325ba99, type: 3}
     weight: 1
 --- !u!82 &1054654678238479385
 AudioSource:
