@@ -69,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (moveAttempt)
             {
+                RandomizedSound.Play(transform, RandomizedSound.MOVEMENT);
                 transform.GetChild(0).rotation = Quaternion.AngleAxis(rotation, Vector3.up);
                 if (rotation == prevRotation)
                 {
@@ -97,6 +98,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (isFalling || !DecayManager.canWalkOn(standOnPosition))
         {
+            if (!isFalling)
+            {
+                RandomizedSound.Play(transform, RandomizedSound.DIE);
+            }
             transform.position += 0.3f * Vector3.down;
             if (transform.position.y < -20)
             {
@@ -118,6 +123,7 @@ public class PlayerMovement : MonoBehaviour
                 SetCursorColor(Color.green);
                 if (Input.GetButtonDown("Fire1"))
                 {
+                    RandomizedSound.Play(transform, RandomizedSound.PLACE);
                     inventory.OnPlace(buildPosition);
                     inventory = null;
                 }
@@ -127,6 +133,7 @@ public class PlayerMovement : MonoBehaviour
                 SetCursorColor(inventory.dropColor);
                 if (Input.GetButtonDown("Fire1"))
                 {
+                    RandomizedSound.Play(transform, RandomizedSound.DROP);
                     inventory.OnDrop(interactPosition);
                     inventory = null;
                 }
@@ -140,6 +147,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (Input.GetButtonDown("Fire1"))
                 {
+                    RandomizedSound.Play(transform, RandomizedSound.DROP);
                     inventory = pickupable.OnPickup(interactPosition);
                 }
             }
