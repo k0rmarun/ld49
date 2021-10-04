@@ -8,78 +8,91 @@ public class PlayerMovement : MonoBehaviour
     public Pickupable inventory;
     public GameObject buildIndicator;
 
+    public bool isFalling;
     public float movementLock = 0;
 
     void Update()
     {
         movementLock -= Time.deltaTime;
-        bool moveAttempt = false;
-        if (Input.GetButtonDown("Horizontal") || (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.3 && movementLock < 0))
+        Vector3 standOnPosition = Vector3.down;
+        if (!isFalling)
         {
-            if (Input.GetAxis("Horizontal") < 0)
+            bool moveAttempt = false;
+            if (Input.GetButtonDown("Horizontal") || (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.6 && movementLock < 0))
             {
-                rotation = -90;
-                lookDirection = Vector3.left;
-                moveAttempt = true;
-            }
-            else if (Input.GetAxis("Horizontal") > 0)
-            {
-                rotation = 90;
-                lookDirection = Vector3.right;
-                moveAttempt = true;
-            }
-        }
-        else if (Input.GetButtonDown("Vertical") || (Mathf.Abs(Input.GetAxis("Vertical")) > 0.3 && movementLock < 0))
-        {
-            if (Input.GetAxis("Vertical") > 0)
-            {
-                rotation = 0;
-                lookDirection = Vector3.forward;
-                moveAttempt = true;
-            }
-            else if (Input.GetAxis("Vertical") < 0)
-            {
-                rotation = 180;
-                lookDirection = Vector3.back;
-                moveAttempt = true;
-            }
-        }
-
-        Vector3 interactPosition = transform.position + lookDirection;
-        Vector3 buildPosition = interactPosition + Vector3.down;
-        UpdateCursor(buildPosition, interactPosition);
-
-        Vector3 standOnPosition = transform.position + Vector3.down;
-        Vector3 walkOnPosition = standOnPosition + lookDirection;
-
-        if (moveAttempt)
-        {
-            transform.GetChild(0).rotation = Quaternion.AngleAxis(rotation, Vector3.up);
-            if (rotation == prevRotation)
-            {
-                if (DecayManager.canWalkOn(walkOnPosition))
+                if (Input.GetAxis("Horizontal") < 0)
                 {
-                    transform.position = walkOnPosition + Vector3.up;
+                    rotation = -90;
+                    lookDirection = Vector3.left;
+                    moveAttempt = true;
+                }
+                else if (Input.GetAxis("Horizontal") > 0)
+                {
+                    rotation = 90;
+                    lookDirection = Vector3.right;
+                    moveAttempt = true;
+                }
+            }
+            else if (Input.GetButtonDown("Vertical") ||
+                     (Mathf.Abs(Input.GetAxis("Vertical")) > 0.6 && movementLock < 0))
+            {
+                if (Input.GetAxis("Vertical") > 0)
+                {
+                    rotation = 0;
+                    lookDirection = Vector3.forward;
+                    moveAttempt = true;
+                }
+                else if (Input.GetAxis("Vertical") < 0)
+                {
+                    rotation = 180;
+                    lookDirection = Vector3.back;
+                    moveAttempt = true;
                 }
             }
 
-            movementLock = 0.3f;
-            prevRotation = rotation;
+            Vector3 interactPosition = transform.position + lookDirection;
+            Vector3 buildPosition = interactPosition + Vector3.down;
+            UpdateCursor(buildPosition, interactPosition);
+
+            standOnPosition = transform.position + Vector3.down;
+            Vector3 walkOnPosition = standOnPosition + lookDirection;
+
+            if (moveAttempt)
+            {
+                transform.GetChild(0).rotation = Quaternion.AngleAxis(rotation, Vector3.up);
+                if (rotation == prevRotation)
+                {
+                    if (DecayManager.canWalkOn(walkOnPosition))
+                    {
+                        transform.position = walkOnPosition + Vector3.up;
+                    }
+
+                    movementLock = 0.3f;
+                }
+                else
+                {
+                    movementLock = 0.1f;
+                }
+
+                prevRotation = rotation;
+            }
+
+            var walkOverDecay = DecayManager.getWalkOverDecay(standOnPosition);
+            if (walkOverDecay)
+            {
+                DecayManager.adjustDecay(standOnPosition, walkOverDecay.remainingLifeTime);
+            }
         }
 
-        var walkOverDecay = DecayManager.getWalkOverDecay(standOnPosition);
-        if (walkOverDecay)
-        {
-            DecayManager.adjustDecay(standOnPosition, walkOverDecay.remainingLifeTime);
-        }
-
-        if (!DecayManager.canWalkOn(standOnPosition))
+        if (isFalling || !DecayManager.canWalkOn(standOnPosition))
         {
             transform.position += 0.3f * Vector3.down;
             if (transform.position.y < -20)
             {
                 GameObject.FindWithTag("Player").GetComponent<GameOverHandler>().OnDeath();
             }
+
+            isFalling = true;
         }
     }
 
