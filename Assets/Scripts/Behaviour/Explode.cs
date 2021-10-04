@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using DefaultNamespace;
 using UnityEngine;
 
@@ -9,6 +11,7 @@ namespace Behaviour
         public GameObject explodeEffect;
         public int ExplosionRange = 3;
         public float delay = 3f;
+        public List<BlockType> AffectBlockType;
 
         private float delayTimer;
         
@@ -29,7 +32,10 @@ namespace Behaviour
                     =>
                 {
                     var info = BlockInfo.GetInfo(o);
-                    return info && info.tags.Contains(BlockType.Wall);
+                    return info && info.tags
+                        .Select(x => x)
+                        .Intersect(AffectBlockType)
+                        .Any();
                 });
 
                 if (explodeEffect)
