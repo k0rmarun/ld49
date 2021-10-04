@@ -14,7 +14,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("++++++"+PauseMenu.isPaused);
         if (Input.GetButtonDown("Cancel"))
         {
             Camera.main.GetComponent<PauseMenu>().ToggleMenu();
