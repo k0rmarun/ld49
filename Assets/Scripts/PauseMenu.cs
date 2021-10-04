@@ -34,11 +34,13 @@ public class PauseMenu : MonoBehaviour
 
     public void Retry()
     {
+        isPaused = false;
         GameOverHandler.RetryLastLevelStatic();
     }
 
     public void MainMenu()
     {
+        isPaused = false;
         GameOverHandler.LoadScene("MainMenu");
     }
 }
