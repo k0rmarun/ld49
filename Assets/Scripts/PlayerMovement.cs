@@ -80,6 +80,7 @@ public class PlayerMovement : MonoBehaviour
             var walkOverDecay = DecayManager.getWalkOverDecay(standOnPosition);
             if (walkOverDecay)
             {
+                walkOverDecay.OnWalkOver();
                 DecayManager.adjustDecay(standOnPosition, walkOverDecay.remainingLifeTime);
             }
         }
