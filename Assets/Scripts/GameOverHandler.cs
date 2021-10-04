@@ -40,4 +40,9 @@ public class GameOverHandler : MonoBehaviour
     {
         SceneManager.LoadScene(name);
     }
+
+    public void Exit()
+    {
+        Application.Quit();
+    }
 }
