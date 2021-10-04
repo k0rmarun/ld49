@@ -23,7 +23,7 @@ public class RandomizedSound : MonoBehaviour
         }
     }
 
-    public void Play()
+    public void Play(bool sourceDeleted)
     {
         int totalWeight = 0;
         foreach (WeightedAudioClip randomizedSound in sounds)
@@ -34,6 +34,10 @@ public class RandomizedSound : MonoBehaviour
         int chosenSound = Random.Range(0, totalWeight);
         totalWeight = 0;
         AudioSource source = GetComponent<AudioSource>();
+        if (sourceDeleted)
+        {
+            source.transform.SetParent(null);
+        }
 
         foreach (WeightedAudioClip randomizedSound in sounds)
         {
@@ -46,7 +50,7 @@ public class RandomizedSound : MonoBehaviour
                     lastPlayedSlots.Add(name, 0);
                 }
 
-                if (lastPlayedSlots[name] < 3)
+                if (lastPlayedSlots[name] < 9)
                 {
                     source.PlayOneShot(randomizedSound.clip);
                     lastPlayedSlots[name]++;
@@ -59,12 +63,12 @@ public class RandomizedSound : MonoBehaviour
         }
     }
 
-    public static void Play(Transform baseObject, string soundSet)
+    public static void Play(Transform baseObject, string soundSet, bool sourceDeleted = false)
     {
         Transform playFrom = baseObject.transform.Find(soundSet);
         if (playFrom)
         {
-            playFrom.GetComponent<RandomizedSound>().Play();
+            playFrom.GetComponent<RandomizedSound>().Play(sourceDeleted);
         }
     }
 }
